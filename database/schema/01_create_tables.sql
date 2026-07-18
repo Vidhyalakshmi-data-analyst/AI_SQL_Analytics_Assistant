@@ -32,3 +32,20 @@ CREATE TABLE categories (
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-- =====================================================
+-- Products Table
+-- =====================================================
+
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    category_id INT NOT NULL REFERENCES categories(category_id),
+    product_name VARCHAR(150) NOT NULL,
+    brand VARCHAR(100) NOT NULL,
+    sub_category VARCHAR(100) NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL CHECK (unit_price > 0),
+    stock_quantity INT NOT NULL CHECK (stock_quantity >= 0),
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
