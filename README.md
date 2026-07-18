@@ -33,4 +33,29 @@ AI SQL Analytics Assistant is an enterprise-style portfolio project that allows 
 
 ## Project Status
 
-🟡 Sprint 0 — Project Initialization (In Progress)
+### ✅ Sprint 0 – Project Initialization
+- Project folder structure created
+- Git repository initialized
+- Virtual environment configured
+- Initial documentation created
+
+### ✅ Sprint 1 – Database Design
+- Business requirements documented
+- Database schema designed
+- ER diagram completed
+- System architecture documented
+
+### ✅ Sprint 1.5 – Version Control
+- First Git commit completed
+- Branch renamed to `main`
+
+### ✅ Sprint 2 – Database Setup
+- PostgreSQL 17 installed
+- pgAdmin configured
+- `ai_sql_assistant` database created
+
+### 🟡 Sprint 2 – Database Schema (Current)
+- Creating SQL scripts
+- Creating tables
+- Adding constraints
+- Preparing seed data

@@ -79,16 +79,18 @@ Customers
 
 | Column | Data Type | Constraints | Description |
 |----------|-----------|-------------|-------------|
-| customer_id | INTEGER | PRIMARY KEY | Unique customer identifier |
-| full_name | VARCHAR(100) | NOT NULL | Customer full name |
+| customer_id | SERIAL | PRIMARY KEY | Unique customer identifier |
+| first_name | VARCHAR(50) | NOT NULL | Customer first name |
+| last_name | VARCHAR(50) | NOT NULL | Customer last name |
 | email | VARCHAR(255) | UNIQUE, NOT NULL | Customer email |
 | phone | VARCHAR(15) | | Mobile number |
 | date_of_birth | DATE | | Date of birth |
 | gender | VARCHAR(20) | | Gender |
 | city | VARCHAR(100) | | Customer city |
 | state | VARCHAR(100) | | Customer state |
+| country | VARCHAR(100) | | Customer country |
 | registration_date | DATE | NOT NULL | Account creation date |
-
+| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Record creation timestamp |
 ---
 
 # Categories Table
@@ -103,17 +105,20 @@ Customers
 
 ---
 
-# Categories Table
+# Products Table
 
-| Column | Data Type | Constraints | Description |
-|----------|-----------|-------------|-------------|
-| category_id | INTEGER | PRIMARY KEY | Unique category identifier |
-| category_name | VARCHAR(100) | UNIQUE, NOT NULL | Category name |
-| description | VARCHAR(255) | | Brief description of the category |
-| active | BOOLEAN | NOT NULL | Indicates whether the category is active or inactive |
-| created_date | DATE | NOT NULL | Date the category was created |
+| Column Name | Data Type | Constraints | Description |
+|-------------|-----------|-------------|-------------|
+| product_id | SERIAL | PRIMARY KEY | Unique product identifier |
+| category_id | INT | NOT NULL, FOREIGN KEY | References Categories(category_id) |
+| product_name | VARCHAR(150) | NOT NULL | Name of the product |
+| brand | VARCHAR(100) | NOT NULL | Product brand |
+| sub_category | VARCHAR(100) | NOT NULL | Product sub-category |
+| unit_price | DECIMAL(10,2) | NOT NULL | Selling price |
+| stock_quantity | INT | NOT NULL | Current stock available |
+| is_active | BOOLEAN | DEFAULT TRUE | Product availability |
+| created_date | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Record creation date |
 
----
 
 # Orders Table
 
