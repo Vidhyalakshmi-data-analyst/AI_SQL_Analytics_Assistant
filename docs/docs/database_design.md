@@ -164,8 +164,8 @@ Customers
 | payment_status | VARCHAR(20) | NOT NULL | Success, Failed, Pending, Refunded |
 | transaction_reference | VARCHAR(100) | UNIQUE | Payment gateway transaction reference |
 | payment_date | TIMESTAMP | NOT NULL | Date and time of payment |
-| amount_paid | DECIMAL(10,2) | NOT NULL | Amount paid |
-| created_date | TIMESTAMP | NOT NULL | Record creation timestamp |
+| payment_amount | DECIMAL(10,2) | NOT NULL | Amount paid |
+| created_at | TIMESTAMP | NOT NULL | Record creation timestamp |
 
 
 ---
@@ -180,5 +180,5 @@ Customers
 | return_reason | VARCHAR(255) | NOT NULL | Reason for the return |
 | refund_amount | DECIMAL(10,2) | NOT NULL | Amount refunded |
 | return_status | VARCHAR(20) | NOT NULL | Requested, Approved, Rejected, Refunded |
-| created_date | TIMESTAMP | NOT NULL | Record creation timestamp |
+| created_at | TIMESTAMP | NOT NULL | Record creation timestamp |
 

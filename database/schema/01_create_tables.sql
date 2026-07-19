@@ -86,3 +86,32 @@ CREATE TABLE order_items (
 );
 
 
+-- =====================================================
+-- Payments Table
+-- =====================================================
+
+CREATE TABLE payments (
+    payment_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL UNIQUE REFERENCES orders(order_id),
+    payment_method VARCHAR(30) NOT NULL,
+    payment_status VARCHAR(20) NOT NULL,
+    transaction_reference VARCHAR(100) UNIQUE,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_amount DECIMAL(10,2) NOT NULL CHECK (payment_amount >= 0),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- =====================================================
+-- Returns Table
+-- =====================================================
+
+CREATE TABLE returns (
+    return_id SERIAL PRIMARY KEY,
+    order_item_id INT NOT NULL UNIQUE REFERENCES order_items(order_item_id),
+    return_date DATE NOT NULL,
+    return_reason VARCHAR(255) NOT NULL,
+    refund_amount DECIMAL(10,2) NOT NULL CHECK (refund_amount >= 0),
+    return_status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
