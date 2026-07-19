@@ -49,3 +49,40 @@ CREATE TABLE products (
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-- =====================================================
+-- Orders Table
+-- =====================================================
+
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT NOT NULL REFERENCES customers(customer_id),
+    order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    order_status VARCHAR(30) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal >= 0),
+    discount_amount DECIMAL(10,2) DEFAULT 0 CHECK (discount_amount >= 0),
+    tax_amount DECIMAL(10,2) DEFAULT 0 CHECK (tax_amount >= 0),
+    total_amount DECIMAL(10,2) NOT NULL CHECK (total_amount >= 0),
+    shipping_address VARCHAR(255) NOT NULL,
+    expected_delivery_date DATE,
+    delivered_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- =====================================================
+-- Order Items Table
+-- =====================================================
+
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL REFERENCES orders(order_id),
+    product_id INT NOT NULL REFERENCES products(product_id),
+    quantity INT NOT NULL CHECK (quantity > 0),
+    unit_price DECIMAL(10,2) NOT NULL CHECK (unit_price > 0),
+    line_total DECIMAL(10,2) NOT NULL CHECK (line_total >= 0),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+

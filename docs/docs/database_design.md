@@ -149,7 +149,7 @@ Customers
 | quantity | INTEGER | NOT NULL | Quantity purchased |
 | unit_price | DECIMAL(10,2) | NOT NULL | Product price at the time of purchase |
 | line_total | DECIMAL(10,2) | NOT NULL | Quantity × Unit Price |
-| created_date | TIMESTAMP | NOT NULL | Record creation timestamp |
+| created_at | TIMESTAMP | NOT NULL | Record creation timestamp |
 
 
 ---
