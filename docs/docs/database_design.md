@@ -1,22 +1,5 @@
 # Database Design
 
-## Customers Table
-
-| Column | Description |
-|---------|-------------|
-| customer_id | Unique customer identifier |
-| full_name | Customer full name |
-| email | Email address |
-| phone | Mobile number |
-| date_of_birth | Customer DOB |
-| gender | Male/Female/Other |
-| city | Customer city |
-| state | Customer state |
-| registration_date | Account creation date |
-
-
----
-
 ## Primary Keys
 
 | Table | Primary Key |
@@ -100,8 +83,8 @@ Customers
 | category_id | INTEGER | PRIMARY KEY | Unique category identifier |
 | category_name | VARCHAR(100) | UNIQUE, NOT NULL | Category name |
 | description | VARCHAR(255) | | Brief description of the category |
-| active | BOOLEAN | NOT NULL | Indicates whether the category is active or inactive |
-| created_date | DATE | NOT NULL | Date the category was created |
+| is_active | BOOLEAN | NOT NULL | Indicates whether the category is active or inactive |
+| created_at | DATE | NOT NULL | Date the category was created |
 
 ---
 
