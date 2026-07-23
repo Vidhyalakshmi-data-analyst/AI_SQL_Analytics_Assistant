@@ -134,6 +134,11 @@ Customers
 | line_total | DECIMAL(10,2) | NOT NULL | Quantity × Unit Price |
 | created_at | TIMESTAMP | NOT NULL | Record creation timestamp |
 
+### Additional Constraint
+
+| Constraint | Description |
+|------------|-------------|
+| UNIQUE (order_id, product_id) | Prevents the same product from appearing multiple times within a single order. The quantity column stores the number of units purchased. |
 
 ---
 
