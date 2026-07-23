@@ -118,7 +118,7 @@ Customers
 | shipping_address | VARCHAR(255) | NOT NULL | Delivery address |
 | expected_delivery_date | DATE | | Estimated delivery date |
 | delivered_date | DATE | | Actual delivery date |
-| created_date | TIMESTAMP | NOT NULL | Record creation timestamp |
+| created_at | TIMESTAMP | NOT NULL | Record creation timestamp |
 
 ---
 
