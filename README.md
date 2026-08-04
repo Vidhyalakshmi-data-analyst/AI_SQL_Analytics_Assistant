@@ -63,36 +63,68 @@ The database has been populated with realistic synthetic business data generated
 
 ## Current Project Structure
 
-```
+```text
 AI_SQL_Analytics_Assistant/
 │
 ├── ai/
+│   ├── database_context.py
+│   ├── gemini_client.py
+│   ├── prompt_builder.py
+│   ├── sql_generator.py
+│   └── sql_validator.py
+│
 ├── database/
 │   ├── connection/
+│   │   └── db_connection.py
 │   ├── schema/
-│   └── seed/
+│   ├── seed/
+│   └── database_executor.py
+│
 ├── docs/
+│
 ├── tests/
+│
 ├── .env.example
 ├── README.md
 ├── requirements.txt
 └── main.py
 ```
-------------
+
+---
 
 ## Roadmap
 
 - ✅ Sprint 0 – Project Initialization
 - ✅ Sprint 1 – Planning & Architecture
-- ✅ Sprint 2 – Database Design
+- ✅ Sprint 2 – Database Setup & Schema
 - ✅ Sprint 3 – Database Seeding
-- 🚀 Sprint 4 – AI SQL Generation
-- ⏳ Sprint 5 – Streamlit Dashboard
-- ⏳ Sprint 6 – Interactive Charts
-- ⏳ Sprint 7 – AI Business Insights
-- ⏳ Sprint 8 – Deployment
+- ✅ Sprint 4 – AI Backend
+  - Gemini API Integration
+  - Database Context
+  - Prompt Builder
+  - SQL Generator
+  - SQL Validator
+  - Database Executor
+  - Unit Testing
+- 🚀 Sprint 5 – AI Query Engine & Streamlit Dashboard
+- ⏳ Sprint 6 – Interactive Charts & Data Visualization
+- ⏳ Sprint 7 – AI Business Insights & Report Generation
+- ⏳ Sprint 8 – Deployment & Production Readiness
 
------------
+---
+
+## Current Features
+
+- ✅ Natural Language to SQL using Gemini
+- ✅ Secure SQL Validation
+- ✅ PostgreSQL Database Integration
+- ✅ Modular AI Architecture
+- ✅ Pandas DataFrame Output
+- ✅ Enterprise-style Project Structure
+- ✅ Unit Tested Backend
+
+-----
+
 
 ## Project Status
 
@@ -102,41 +134,40 @@ AI_SQL_Analytics_Assistant/
 - Virtual environment configured
 - Initial documentation created
 
-### ✅ Sprint 1 – Planning & Architecture
+### ✅ Sprint 1 – Database Design
 - Business requirements documented
-- System architecture designed
-- Database schema planned
+- Database schema designed
 - ER diagram completed
+- System architecture documented
 
 ### ✅ Sprint 1.5 – Version Control
-- Git repository configured
-- Initial commit completed
-- Branch renamed to `main`
+- Git repository connected to GitHub
+- Main branch configured
+- Initial project published
 
-### ✅ Sprint 2 – Database Design & Setup
+### ✅ Sprint 2 – Database Setup
 - PostgreSQL 17 installed
 - pgAdmin configured
 - Database created
 - Database schema implemented
-- All tables created with constraints
+- Constraints added
+- Indexes created
 
 ### ✅ Sprint 3 – Database Seeding
-- Database connection module created
-- Environment variables configured
-- Customer data generated
-- Category data generated
-- Product catalog generated
-- Orders generated
-- Order items generated
-- Payments generated
-- Returns generated
-- Realistic relational dataset created
+- Customers seeded
+- Categories seeded
+- Products seeded
+- Orders seeded
+- Order Items seeded
+- Payments seeded
+- Returns seeded
+- All seed scripts verified
 
-### 🚀 Sprint 4 – AI Engine (Current)
-- Gemini integration (In Progress)
-- Prompt engineering
-- SQL generation
-- SQL execution
-- Query validation
-
-
+### ✅ Sprint 4 – AI Backend
+- Gemini API integrated
+- Database context module created
+- Prompt builder implemented
+- SQL Generator implemented
+- SQL Validator implemented
+- Database Executor implemented
+- Unit tests completed
