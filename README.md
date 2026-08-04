@@ -70,6 +70,7 @@ AI_SQL_Analytics_Assistant/
 │   ├── database_context.py
 │   ├── gemini_client.py
 │   ├── prompt_builder.py
+│   ├── query_engine.py
 │   ├── sql_generator.py
 │   └── sql_validator.py
 │
@@ -83,13 +84,17 @@ AI_SQL_Analytics_Assistant/
 ├── docs/
 │
 ├── tests/
+│   ├── test_db_connection.py
+│   ├── test_database_executor.py
+│   ├── test_gemini_connection.py
+│   ├── test_query_engine.py
+│   └── test_sql_validator.py
 │
 ├── .env.example
 ├── README.md
 ├── requirements.txt
 └── main.py
 ```
-
 ---
 
 ## Roadmap
@@ -99,32 +104,32 @@ AI_SQL_Analytics_Assistant/
 - ✅ Sprint 2 – Database Setup & Schema
 - ✅ Sprint 3 – Database Seeding
 - ✅ Sprint 4 – AI Backend
-  - Gemini API Integration
+  - Gemini Integration
   - Database Context
   - Prompt Builder
   - SQL Generator
   - SQL Validator
   - Database Executor
-  - Unit Testing
-- 🚀 Sprint 5 – AI Query Engine & Streamlit Dashboard
-- ⏳ Sprint 6 – Interactive Charts & Data Visualization
+  - Query Engine
+  - End-to-End Integration Tests
+- 🚀 Sprint 5 – Streamlit Dashboard
+- ⏳ Sprint 6 – Interactive Charts & Visualizations
 - ⏳ Sprint 7 – AI Business Insights & Report Generation
 - ⏳ Sprint 8 – Deployment & Production Readiness
-
 ---
 
 ## Current Features
 
-- ✅ Natural Language to SQL using Gemini
+- ✅ Natural Language to SQL using Gemini AI
 - ✅ Secure SQL Validation
-- ✅ PostgreSQL Database Integration
-- ✅ Modular AI Architecture
+- ✅ PostgreSQL Integration
+- ✅ AI Query Engine
+- ✅ End-to-End AI Pipeline
 - ✅ Pandas DataFrame Output
-- ✅ Enterprise-style Project Structure
-- ✅ Unit Tested Backend
+- ✅ Modular Enterprise Architecture
+- ✅ Unit & Integration Tests
 
 -----
-
 
 ## Project Status
 
@@ -165,9 +170,48 @@ AI_SQL_Analytics_Assistant/
 
 ### ✅ Sprint 4 – AI Backend
 - Gemini API integrated
-- Database context module created
-- Prompt builder implemented
+- Database Context module implemented
+- Prompt Builder implemented
 - SQL Generator implemented
 - SQL Validator implemented
 - Database Executor implemented
+- Query Engine implemented
+- End-to-End AI pipeline completed
 - Unit tests completed
+- Integration tests completed
+- End-to-End backend pipeline verified
+
+
+## Completed Backend Workflow
+
+The backend is fully functional and follows a modular architecture.
+
+```
+Natural Language Question
+            │
+            ▼
+      Query Engine
+            │
+            ▼
+     Prompt Builder
+            │
+            ▼
+      Gemini 3.5 Flash
+            │
+            ▼
+      SQL Generator
+            │
+            ▼
+      SQL Validator
+            │
+            ▼
+    Database Executor
+            │
+            ▼
+      PostgreSQL
+            │
+            ▼
+    Pandas DataFrame
+```
+
+This backend has been completely implemented and tested before building the Streamlit frontend.
