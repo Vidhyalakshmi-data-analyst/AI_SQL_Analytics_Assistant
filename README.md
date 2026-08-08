@@ -112,8 +112,8 @@ AI_SQL_Analytics_Assistant/
   - Database Executor
   - Query Engine
   - End-to-End Integration Tests
-- 🚀 Sprint 5 – Streamlit Dashboard
-- ⏳ Sprint 6 – Interactive Charts & Visualizations
+- ✅ Sprint 5 – Streamlit Dashboard
+- 🚀 Sprint 6 – Interactive Charts & Visualizations
 - ⏳ Sprint 7 – AI Business Insights & Report Generation
 - ⏳ Sprint 8 – Deployment & Production Readiness
 ---
@@ -215,3 +215,26 @@ Natural Language Question
 ```
 
 This backend has been completely implemented and tested before building the Streamlit frontend.
+
+
+### ✅ Sprint 5 – Streamlit Dashboard
+- Streamlit application implemented
+- Professional dashboard layout created
+- Sidebar navigation implemented
+- Business question input implemented
+- Backend query engine integrated
+- Generated SQL displayed
+- Query results displayed in DataFrame
+- Query result row count displayed
+- CSV download implemented
+- Streamlit session state implemented
+- Query results persist after CSV download
+- QueryResult model implemented
+
+### 🚀 Sprint 6 – Interactive Charts
+- Chart generator module created
+- Automatic chart suitability detection
+- Bar chart generation
+- Line chart generation
+- Pie chart generation
+- Interactive Plotly visualizations
