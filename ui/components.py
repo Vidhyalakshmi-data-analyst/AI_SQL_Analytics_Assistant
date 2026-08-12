@@ -114,15 +114,23 @@ def render_result_summary(dataframe: pd.DataFrame):
     )
 
 
-def render_chart_placeholder():
+def render_chart(figure):
     """
-    Placeholder for charts.
+    Display a Plotly chart in Streamlit.
 
-    Sprint 6 will replace this.
+    Responsibility:
+    Render the supplied Plotly figure.
     """
 
-    st.info(
-        "Charts will appear here."
+    if figure is None:
+        st.info(
+            "No suitable chart could be generated for this result."
+        )
+        return
+
+    st.plotly_chart(
+        figure,
+        use_container_width=True
     )
 
 

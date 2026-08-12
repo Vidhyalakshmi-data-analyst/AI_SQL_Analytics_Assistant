@@ -13,6 +13,7 @@ Author: Vidhyalakshmi
 import streamlit as st
 
 from ai.query_engine import answer_question
+from ai.chart_generator import generate_chart
 
 from ui.layout import (
     render_header,
@@ -32,7 +33,7 @@ from ui.components import (
     render_sql,
     render_result_summary,
     render_download_button,
-    render_chart_placeholder,
+    render_chart,
     render_insight_placeholder,
     render_error_message,
     render_warning_message
@@ -140,8 +141,10 @@ if result is not None:
 
     render_chart_section()
 
-    render_chart_placeholder()
+    figure = generate_chart(result.dataframe)
 
+    render_chart(figure)
+    
     st.divider()
 
     render_insight_section()

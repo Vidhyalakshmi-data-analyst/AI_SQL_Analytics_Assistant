@@ -113,8 +113,8 @@ AI_SQL_Analytics_Assistant/
   - Query Engine
   - End-to-End Integration Tests
 - ✅ Sprint 5 – Streamlit Dashboard
-- 🚀 Sprint 6 – Interactive Charts & Visualizations
-- ⏳ Sprint 7 – AI Business Insights & Report Generation
+- ✅ Sprint 6 – Interactive Charts & Visualizations
+- 🚀 Sprint 7 – AI Business Insights & Report Generation
 - ⏳ Sprint 8 – Deployment & Production Readiness
 ---
 
@@ -139,7 +139,7 @@ AI_SQL_Analytics_Assistant/
 - Virtual environment configured
 - Initial documentation created
 
-### ✅ Sprint 1 – Database Design
+### ✅ Sprint 1 – Planning & Architecture
 - Business requirements documented
 - Database schema designed
 - ER diagram completed
@@ -170,8 +170,8 @@ AI_SQL_Analytics_Assistant/
 
 ### ✅ Sprint 4 – AI Backend
 - Gemini API integrated
-- Database Context module implemented
-- Prompt Builder implemented
+- Database context module created
+- Prompt builder implemented
 - SQL Generator implemented
 - SQL Validator implemented
 - Database Executor implemented
@@ -180,7 +180,6 @@ AI_SQL_Analytics_Assistant/
 - Unit tests completed
 - Integration tests completed
 - End-to-End backend pipeline verified
-
 
 ## Completed Backend Workflow
 
@@ -218,23 +217,36 @@ This backend has been completely implemented and tested before building the Stre
 
 
 ### ✅ Sprint 5 – Streamlit Dashboard
-- Streamlit application implemented
-- Professional dashboard layout created
-- Sidebar navigation implemented
+- Streamlit application created
+- Professional dashboard layout implemented
+- Sidebar implemented
 - Business question input implemented
-- Backend query engine integrated
+- Query execution integrated with backend
 - Generated SQL displayed
-- Query results displayed in DataFrame
-- Query result row count displayed
+- SQL results displayed in interactive tables
 - CSV download implemented
-- Streamlit session state implemented
-- Query results persist after CSV download
-- QueryResult model implemented
+- Error and warning handling implemented
+- Component-based UI architecture implemented
 
-### 🚀 Sprint 6 – Interactive Charts
-- Chart generator module created
-- Automatic chart suitability detection
-- Bar chart generation
-- Line chart generation
-- Pie chart generation
-- Interactive Plotly visualizations
+### ✅ Sprint 6 – Interactive Visualizations
+- Chart generator module implemented
+- Automatic chart type selection implemented
+- Bar charts implemented
+- Line charts implemented
+- Pie charts implemented
+- Numeric and categorical column detection implemented
+- Date/time column detection implemented
+- Distribution analysis implemented for pie-chart selection
+- Chart generation integrated with Streamlit
+- Chart generator unit tests completed
+
+### 🚧 Sprint 7 – AI Business Insights
+- AI-generated business insights
+- Key trend identification
+- Anomaly/highlight detection
+- Natural-language summary of query results
+
+### ⏳ Sprint 8 – Deployment
+- Application deployment
+- Environment/secrets configuration
+- Production testing
