@@ -37,7 +37,8 @@ from ui.components import (
     render_chart,
     render_insight,
     render_error_message,
-    render_warning_message
+    render_warning_message,
+    render_footer
 )
 
 
@@ -156,3 +157,6 @@ if result is not None:
     )
 
     render_insight(insight)
+
+    render_footer()
+    

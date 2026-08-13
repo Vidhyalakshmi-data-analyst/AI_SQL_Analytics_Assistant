@@ -28,6 +28,8 @@ def render_sidebar():
 
         st.write("AI SQL Analytics Assistant")
 
+        st.caption("Portfolio Project · Developed by Vidhyalakshmi A")
+
         st.subheader("AI Model")
 
         st.write("Gemini 3.5 Flash")

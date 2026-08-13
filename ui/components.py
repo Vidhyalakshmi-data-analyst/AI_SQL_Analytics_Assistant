@@ -168,3 +168,18 @@ def render_warning_message(
         message
     )
     
+
+def render_footer():
+    st.markdown(
+        """
+        <div style="text-align: center; margin-top: 40px; padding: 15px 0;">
+            <p style="margin: 0; font-size: 14px;">
+                <strong>AI SQL Analytics Assistant</strong>
+            </p>
+            <p style="margin: 4px 0 0 0; font-size: 13px;">
+                Portfolio Project · Vidhyalakshmi A
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
