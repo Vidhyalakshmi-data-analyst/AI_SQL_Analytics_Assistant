@@ -133,21 +133,21 @@ AI_SQL_Analytics_Assistant/
 
 ## Current Features
 
-✅ Natural Language to SQL using Gemini AI
-✅ Secure SQL Validation
-✅ PostgreSQL Integration
-✅ AI Query Engine
-✅ End-to-End AI Pipeline
-✅ Pandas DataFrame Output
-✅ Automatic Chart Selection
-✅ Bar, Line and Pie Chart Generation
-✅ Verified Analytical Findings
-✅ Time-Series Analysis
-✅ AI-Generated Business Insights
-✅ Streamlit Insight Integration
-✅ Graceful handling of insufficient analytical data
-✅ Modular Enterprise Architecture
-✅ Unit & Integration Tests
+- ✅ Natural Language to SQL using Gemini AI
+- ✅ Secure SQL Validation
+- ✅ PostgreSQL Integration
+- ✅ AI Query Engine
+- ✅ End-to-End AI Pipeline
+- ✅ Pandas DataFrame Output
+- ✅ Automatic Chart Selection
+- ✅ Bar, Line and Pie Chart Generation
+- ✅ Verified Analytical Findings
+- ✅ Time-Series Analysis
+- ✅ AI-Generated Business Insights
+- ✅ Streamlit Insight Integration
+- ✅ Graceful handling of insufficient analytical data
+- ✅ Modular Enterprise Architecture
+- ✅ Unit & Integration Tests
 
 -----
 
