@@ -133,16 +133,15 @@ def render_chart(figure):
         use_container_width=True
     )
 
-
-def render_insight_placeholder():
+def render_insight(
+    insight: str
+):
     """
-    Placeholder for AI insights.
-
-    Sprint 7 will replace this.
+    Render the generated business insight.
     """
 
-    st.info(
-        "Business insights will appear here."
+    st.markdown(
+        insight
     )
 
 

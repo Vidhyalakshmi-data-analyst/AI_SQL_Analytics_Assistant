@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-AI SQL Analytics Assistant is an enterprise-style portfolio project that enables users to ask business questions in natural language. The application converts English questions into SQL queries using Google's Gemini 2.5 Flash model, executes them securely on a PostgreSQL database, and presents interactive visualizations along with AI-generated business insights.
+AI SQL Analytics Assistant is an enterprise-style portfolio project that enables users to ask business questions in natural language. The application converts English questions into SQL queries using Google's Gemini 3.5 Flash model, executes them securely on a PostgreSQL database, and presents interactive visualizations along with AI-generated business insights.
 
 The project follows a production-style architecture with modular components for AI, database management, visualization, and analytics.
 ---
@@ -25,6 +25,10 @@ The project follows a production-style architecture with modular components for 
 - AI-powered business analytics
 - Interactive dashboards
 - Data visualization with Plotly
+- AI-generated business insights
+- Automated analytical findings from query results
+- Time-series trend analysis
+- Category and numerical comparison analysis
 - Modular enterprise architecture
 - Production-style project structure
 
@@ -69,6 +73,10 @@ AI_SQL_Analytics_Assistant/
 ├── ai/
 │   ├── database_context.py
 │   ├── gemini_client.py
+│   ├── insight_client.py
+│   ├── insight_engine.py
+│   ├── insight_generator.py
+│   ├── insight_prompt.py
 │   ├── prompt_builder.py
 │   ├── query_engine.py
 │   ├── sql_generator.py
@@ -87,6 +95,10 @@ AI_SQL_Analytics_Assistant/
 │   ├── test_db_connection.py
 │   ├── test_database_executor.py
 │   ├── test_gemini_connection.py
+│   ├── test_insight_client.py
+│   ├── test_insight_engine.py
+│   ├── test_insight_generator.py
+│   ├── test_insight_prompt.py
 │   ├── test_query_engine.py
 │   └── test_sql_validator.py
 │
@@ -96,6 +108,7 @@ AI_SQL_Analytics_Assistant/
 └── main.py
 ```
 ---
+
 
 ## Roadmap
 
@@ -114,20 +127,27 @@ AI_SQL_Analytics_Assistant/
   - End-to-End Integration Tests
 - ✅ Sprint 5 – Streamlit Dashboard
 - ✅ Sprint 6 – Interactive Charts & Visualizations
-- 🚀 Sprint 7 – AI Business Insights & Report Generation
+- ✅ Sprint 7 – AI Business Insights & Report Generation
 - ⏳ Sprint 8 – Deployment & Production Readiness
 ---
 
 ## Current Features
 
-- ✅ Natural Language to SQL using Gemini AI
-- ✅ Secure SQL Validation
-- ✅ PostgreSQL Integration
-- ✅ AI Query Engine
-- ✅ End-to-End AI Pipeline
-- ✅ Pandas DataFrame Output
-- ✅ Modular Enterprise Architecture
-- ✅ Unit & Integration Tests
+✅ Natural Language to SQL using Gemini AI
+✅ Secure SQL Validation
+✅ PostgreSQL Integration
+✅ AI Query Engine
+✅ End-to-End AI Pipeline
+✅ Pandas DataFrame Output
+✅ Automatic Chart Selection
+✅ Bar, Line and Pie Chart Generation
+✅ Verified Analytical Findings
+✅ Time-Series Analysis
+✅ AI-Generated Business Insights
+✅ Streamlit Insight Integration
+✅ Graceful handling of insufficient analytical data
+✅ Modular Enterprise Architecture
+✅ Unit & Integration Tests
 
 -----
 
@@ -239,14 +259,116 @@ This backend has been completely implemented and tested before building the Stre
 - Distribution analysis implemented for pie-chart selection
 - Chart generation integrated with Streamlit
 - Chart generator unit tests completed
+- Chart visualization verified with real query results
 
-### 🚧 Sprint 7 – AI Business Insights
-- AI-generated business insights
-- Key trend identification
-- Anomaly/highlight detection
-- Natural-language summary of query results
+### ✅ Sprint 7 – AI Business Insights
+The AI Business Insights layer has been implemented as a separate modular pipeline that analyzes verified query results before sending them to Gemini.
 
-### ⏳ Sprint 8 – Deployment
+## Analytical Findings
+- Basic statistical analysis implemented
+- Numeric result analysis implemented
+- Total and average calculations implemented
+- Highest and lowest value detection implemented
+- Category comparison analysis implemented
+- Distribution analysis implemented
+- Time-series analysis implemented
+- Percentage change calculations implemented
+- Insufficient-data handling implemented
+- AI Insight Layer
+- Dedicated insight prompt builder implemented
+- Verified analytical findings passed to the AI instead of raw query results
+- Dedicated Gemini insight client implemented
+- Insight engine implemented to orchestrate the complete AI insight workflow
+- AI-generated business insights integrated into Streamlit
+- Category comparisons handled using appropriate comparison language
+- Time-based increases and decreases handled separately from category comparisons
+- AI instructed not to invent unsupported numbers, causes, trends, or business explanations
+- Data limitations explicitly communicated when analytical findings are insufficient
+
+## Insight Workflow
+
+```
+Query Result DataFrame
+          │
+          ▼
+   Insight Generator
+          │
+          ▼
+Verified Analytical Findings
+          │
+          ▼
+    Insight Prompt
+          │
+          ▼
+   Gemini Insight Client
+          │
+          ▼
+    Insight Engine
+          │
+          ▼
+ AI Business Insight
+          │
+          ▼
+   Streamlit Dashboard
+```
+
+## Completed AI Insight Architecture
+
+The project now separates SQL generation from business insight generation.
+
+```
+                         User Question
+                              │
+                              ▼
+                       ┌─────────────┐
+                       │ Query Engine│
+                       └──────┬──────┘
+                              │
+                              ▼
+                       SQL Generation
+                              │
+                              ▼
+                       SQL Validation
+                              │
+                              ▼
+                       PostgreSQL DB
+                              │
+                              ▼
+                       Pandas DataFrame
+                              │
+                 ┌────────────┴────────────┐
+                 │                         │
+                 ▼                         ▼
+          Chart Generator          Insight Generator
+                 │                         │
+                 ▼                         ▼
+        Interactive Chart        Verified Findings
+                                           │
+                                           ▼
+                                   Insight Prompt
+                                           │
+                                           ▼
+                                  Gemini Insight Client
+                                           │
+                                           ▼
+                                     Insight Engine
+                                           │
+                                           ▼
+                                  Business Insight
+                                           │
+                                           ▼
+                                    Streamlit UI
+
+```
+
+This separation allows analytical calculations to remain deterministic and verifiable while Gemini is used primarily for natural-language interpretation and business communication.
+
+---
+
+### ⏳ Sprint 8 – Deployment & Production Readiness
 - Application deployment
 - Environment/secrets configuration
 - Production testing
+- Production error handling
+- Performance optimization
+- Final documentation

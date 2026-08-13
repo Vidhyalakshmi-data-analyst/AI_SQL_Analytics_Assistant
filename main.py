@@ -13,6 +13,7 @@ Author: Vidhyalakshmi
 import streamlit as st
 
 from ai.query_engine import answer_question
+from ai.insight_engine import (generate_insight)
 from ai.chart_generator import generate_chart
 
 from ui.layout import (
@@ -34,7 +35,7 @@ from ui.components import (
     render_result_summary,
     render_download_button,
     render_chart,
-    render_insight_placeholder,
+    render_insight,
     render_error_message,
     render_warning_message
 )
@@ -149,4 +150,9 @@ if result is not None:
 
     render_insight_section()
 
-    render_insight_placeholder()
+    insight = generate_insight(
+    result.dataframe,
+    question
+    )
+
+    render_insight(insight)
