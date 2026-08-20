@@ -17,9 +17,23 @@ from database.connection.db_connection import (
     get_connection
 )
 
-def execute_query(connection, sql: str):
+def execute_query(
+    connection,
+    sql: str,
+    parameters=None
+):
     """
     Execute a validated SQL query.
+
+    Parameters:
+        connection:
+            PostgreSQL database connection.
+
+        sql:
+            SQL query to execute.
+
+        parameters:
+            Optional parameters for parameterized SQL.
 
     Returns:
         Database cursor.
@@ -27,7 +41,16 @@ def execute_query(connection, sql: str):
 
     cursor = connection.cursor()
 
-    cursor.execute(sql)
+    if parameters:
+
+        cursor.execute(
+            sql,
+            parameters
+        )
+
+    else:
+
+        cursor.execute(sql)
 
     return cursor
 
@@ -64,10 +87,21 @@ def close_connection(connection, cursor):
     if connection is not None:
         connection.close()
 
-def run_query(sql: str) -> pd.DataFrame:
+
+def run_query(
+    sql: str,
+    parameters=None
+) -> pd.DataFrame:
     """
     Execute a validated SQL query and
     return the results as a DataFrame.
+
+    Parameters:
+        sql:
+            SQL query to execute.
+
+        parameters:
+            Optional parameters for parameterized SQL.
     """
 
     connection = None
@@ -79,7 +113,8 @@ def run_query(sql: str) -> pd.DataFrame:
 
         cursor = execute_query(
             connection,
-            sql
+            sql,
+            parameters
         )
 
         dataframe = fetch_dataframe(

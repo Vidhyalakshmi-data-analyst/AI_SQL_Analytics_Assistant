@@ -14,6 +14,7 @@ Project: AI SQL Analytics Assistant
 import pandas as pd
 import streamlit as st
 
+from services.export_service import dataframe_to_excel
 
 def render_question_input() -> str:
     """
@@ -78,19 +79,45 @@ def render_download_button(
     dataframe: pd.DataFrame
 ):
     """
-    Provide a download button for query results.
+    Render download options for query results.
     """
+
+    if dataframe is None or dataframe.empty:
+
+        return
 
     csv_data = dataframe.to_csv(
         index=False
     )
 
-    st.download_button(
-        label="⬇️ Download Results as CSV",
-        data=csv_data,
-        file_name="query_results.csv",
-        mime="text/csv"
+    excel_data = dataframe_to_excel(
+        dataframe
     )
+
+    csv_column, excel_column = st.columns(2)
+
+    with csv_column:
+
+        st.download_button(
+            label="⬇️ Download CSV",
+            data=csv_data,
+            file_name="query_results.csv",
+            mime="text/csv",
+            use_container_width=True
+        )
+
+    with excel_column:
+
+        st.download_button(
+            label="📊 Download Excel",
+            data=excel_data,
+            file_name="query_results.xlsx",
+            mime=(
+                "application/vnd.openxmlformats-officedocument."
+                "spreadsheetml.sheet"
+            ),
+            use_container_width=True
+        )
     
 
 def render_sql(sql: str):
@@ -126,6 +153,29 @@ def render_chart(figure):
         st.info(
             "No suitable chart could be generated for this result."
         )
+        return
+
+    st.plotly_chart(
+        figure,
+        use_container_width=True
+    )
+
+def render_dashboard_chart(
+    figure
+) -> None:
+    """
+    Render a dashboard Plotly chart.
+
+    Responsibility:
+        Display the supplied dashboard chart.
+    """
+
+    if figure is None:
+
+        st.info(
+            "No chart is available for the selected filters."
+        )
+
         return
 
     st.plotly_chart(
@@ -182,4 +232,210 @@ def render_footer():
         </div>
         """,
         unsafe_allow_html=True
+    )
+
+
+def format_currency(value: float) -> str:
+    """
+    Format currency values into compact Indian notation.
+
+    Examples:
+        1500        -> ₹1.50K
+        150000      -> ₹1.50L
+        32884610    -> ₹3.29Cr
+    """
+
+    value = float(value)
+
+    if abs(value) >= 10_000_000:
+        return f"₹{value / 10_000_000:.2f} Cr"
+
+    if abs(value) >= 100_000:
+        return f"₹{value / 100_000:.2f} L"
+
+    if abs(value) >= 1_000:
+        return f"₹{value / 1_000:.2f} K"
+
+    return f"₹{value:,.2f}"
+
+
+def render_kpi_cards(kpi_result: dict) -> None:
+    """
+    Render calculated business KPIs as dashboard cards.
+
+    Parameters:
+        kpi_result:
+            Result returned by generate_kpis().
+    """
+
+    if not kpi_result:
+        return
+
+    if kpi_result.get("status") != "success":
+        return
+
+    kpis = kpi_result.get("kpis", {})
+
+    if not kpis:
+        return
+
+    st.subheader("📊 Query KPIs")
+
+    columns = st.columns(4)
+
+    # ----------------------------------------------
+    # Total
+    # ----------------------------------------------
+
+    with columns[0]:
+
+        st.metric(
+            label="Total Sales",
+            value=format_currency(
+                    kpis["total"]
+                    )
+        )
+
+    # ----------------------------------------------
+    # Average
+    # ----------------------------------------------
+
+    with columns[1]:
+
+        st.metric(
+            label="Average Sales",
+            value=format_currency(kpis["average"])
+        )
+
+    # ----------------------------------------------
+    # Highest
+    # ----------------------------------------------
+
+    with columns[2]:
+
+        highest = kpis.get("highest")
+
+        if highest:
+
+            st.metric(
+                label="Highest Sales",
+                value=format_currency(highest["value"]),
+                help=(
+                    f"Category: "
+                    f"{highest['category']}"
+                )
+            )
+
+        else:
+
+            st.metric(
+                label="Maximum",
+                value=f"{kpis['maximum']:,.2f}"
+            )
+
+    # ----------------------------------------------
+    # Lowest
+    # ----------------------------------------------
+
+    with columns[3]:
+
+        lowest = kpis.get("lowest")
+
+        if lowest:
+
+            st.metric(
+                label="Lowest Sales",
+                value=format_currency(lowest["value"]),
+                help=(
+                    f"Category: "
+                    f"{lowest['category']}"
+                )
+            )
+
+        else:
+
+            st.metric(
+                label="Minimum",
+                value=f"{kpis['minimum']:,.2f}"
+            )
+
+
+def render_dashboard_kpi_cards(
+    kpi_result: dict
+) -> None:
+    """
+    Render dashboard business performance KPIs.
+    """
+
+    if not kpi_result:
+        return
+
+    if kpi_result.get("status") != "success":
+        return
+
+    kpis = kpi_result.get(
+        "kpis",
+        {}
+    )
+
+    if not kpis:
+        return
+
+    columns = st.columns(4)
+
+    # ----------------------------------------------
+    # Total Sales
+    # ----------------------------------------------
+
+    with columns[0]:
+
+        st.metric(
+            label="Total Sales",
+            value=format_currency(
+                kpis["total_sales"]
+            )
+        )
+
+    # ----------------------------------------------
+    # Total Orders
+    # ----------------------------------------------
+
+    with columns[1]:
+
+        st.metric(
+            label="Total Orders",
+            value=f"{kpis['total_orders']:,}"
+        )
+
+    # ----------------------------------------------
+    # Total Customers
+    # ----------------------------------------------
+
+    with columns[2]:
+
+        st.metric(
+            label="Total Customers",
+            value=f"{kpis['total_customers']:,}"
+        )
+
+    # ----------------------------------------------
+    # Units Sold
+    # ----------------------------------------------
+
+    with columns[3]:
+
+        st.metric(
+            label="Units Sold",
+            value=f"{kpis['units_sold']:,}"
+        )
+
+    # ----------------------------------------------
+    # Average Order Value
+    # ----------------------------------------------
+
+    st.caption(
+        "Average Order Value: "
+        + format_currency(
+            kpis["average_order_value"]
+        )
     )

@@ -39,6 +39,28 @@ class TestDatabaseExecutor(unittest.TestCase):
 
         print(dataframe.head())
 
+    def test_run_query_with_parameters(self):
+
+        dataframe = run_query(
+            """
+            SELECT *
+            FROM customers
+            WHERE state = %s;
+            """,
+            ("Tamil Nadu",)
+        )
+
+        self.assertIsInstance(
+            dataframe,
+            pd.DataFrame
+        )
+
+        self.assertGreater(
+            len(dataframe),
+            0
+        )
+
+        print(dataframe.head())
 
 if __name__ == "__main__":
 

@@ -15,6 +15,7 @@ import streamlit as st
 from ai.query_engine import answer_question
 from ai.insight_engine import (generate_insight)
 from ai.chart_generator import generate_chart
+from ai.kpi_generator import generate_kpis
 
 from ui.layout import (
     render_header,
@@ -25,6 +26,8 @@ from ui.layout import (
 )
 
 from ui.sidebar import render_sidebar
+
+from ui.dashboard import render_dashboard
 
 from ui.components import (
     render_question_input,
@@ -38,7 +41,8 @@ from ui.components import (
     render_insight,
     render_error_message,
     render_warning_message,
-    render_footer
+    render_footer,
+    render_kpi_cards
 )
 
 
@@ -61,6 +65,11 @@ st.set_page_config(
 if "query_result" not in st.session_state:
     st.session_state.query_result = None
 
+if "insight" not in st.session_state:
+    st.session_state.insight = None
+
+if "question" not in st.session_state:
+    st.session_state.question = ""
 
 # --------------------------------------------------
 # Render Static UI
@@ -69,6 +78,13 @@ if "query_result" not in st.session_state:
 render_sidebar()
 
 render_header()
+
+# --------------------------------------------------
+# AI-Powered Query Analysis
+# --------------------------------------------------
+
+st.subheader("🤖 AI-Powered Query Analysis")
+
 
 question = render_question_input()
 
@@ -95,13 +111,34 @@ if generate_clicked:
                 "Generating SQL and retrieving data..."
             ):
 
+                # Store the question
+                st.session_state.question = question
+
+                # Generate SQL and execute query
                 st.session_state.query_result = (
                     answer_question(question)
+                )
+
+            # --------------------------------------------------
+            # Generate AI Insight ONLY ONCE
+            # --------------------------------------------------
+
+            with st.spinner(
+                "Generating business insight..."
+            ):
+
+                st.session_state.insight = (
+                    generate_insight(
+                        st.session_state.query_result.dataframe,
+                        question
+                    )
                 )
 
         except Exception as e:
 
             st.session_state.query_result = None
+
+            st.session_state.insight = None
 
             render_error_message(
                 str(e)
@@ -119,8 +156,13 @@ if result is not None:
 
     render_sql_section()
 
-    render_sql(
-        result.sql
+    render_sql(result.sql)
+
+    st.download_button(
+    label="⬇️ Download SQL",
+    data=result.sql,
+    file_name="generated_query.sql",
+    mime="text/plain"
     )
 
     st.divider()
@@ -141,6 +183,16 @@ if result is not None:
 
     st.divider()
 
+    # --------------------------------------------------
+    # Render KPI Cards
+    # --------------------------------------------------
+
+    kpi_result = generate_kpis(result.dataframe)
+
+    render_kpi_cards(kpi_result)
+
+    st.divider()
+
     render_chart_section()
 
     figure = generate_chart(result.dataframe)
@@ -151,12 +203,15 @@ if result is not None:
 
     render_insight_section()
 
-    insight = generate_insight(
-    result.dataframe,
-    question
-    )
+    render_insight(st.session_state.insight)
 
-    render_insight(insight)
+    st.divider()
+
+    # --------------------------------------------------
+    # Interactive Business Dashboard
+    # --------------------------------------------------
+
+    render_dashboard()
 
     render_footer()
     

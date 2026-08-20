@@ -49,10 +49,10 @@ def render_results_section():
 
 def render_chart_section():
     """
-    Chart section heading.
+    Query visualization section heading.
     """
 
-    st.subheader("📈 Visualizations")
+    st.subheader("📈 Query Visualizations")
 
 
 def render_insight_section():
