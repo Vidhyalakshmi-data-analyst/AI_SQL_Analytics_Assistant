@@ -14,6 +14,10 @@ def get_gemini_client():
     api_key = os.getenv("GEMINI_API_KEY")
 
     if not api_key:
+        api_key = st.secrets.get("GEMINI_API_KEY")
+
+
+    if not api_key:
         raise ValueError("GEMINI_API_KEY not found.")
 
     return genai.Client(api_key=api_key)
@@ -24,4 +28,7 @@ def get_model_name():
     Return the configured Gemini model.
     """
 
-    return os.getenv("GEMINI_MODEL", "models/gemini-3.5-flash")
+    return os.getenv(
+        "GEMINI_MODEL",
+        st.secrets.get("GEMINI_MODEL", "gemini-3.5-flash")
+    )
