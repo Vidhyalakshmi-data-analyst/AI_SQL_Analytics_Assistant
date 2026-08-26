@@ -13,8 +13,8 @@ def get_gemini_client():
 
     api_key = os.getenv("GEMINI_API_KEY")
 
-    if not api_key:
-        api_key = st.secrets.get("GEMINI_API_KEY")
+    # if not api_key:
+        # api_key = st.secrets.get("GEMINI_API_KEY")
 
 
     if not api_key:
@@ -29,6 +29,4 @@ def get_model_name():
     """
 
     return os.getenv(
-        "GEMINI_MODEL",
-        st.secrets.get("GEMINI_MODEL", "gemini-3.5-flash")
-    )
+        "GEMINI_MODEL", "gemini-3.5-flash")
