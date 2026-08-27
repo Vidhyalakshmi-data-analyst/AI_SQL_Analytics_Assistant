@@ -380,6 +380,8 @@ def render_dashboard_kpi_cards(
 
     if not kpis:
         return
+    
+    st.subheader("📊 Dashboard KPIs")
 
     columns = st.columns(4)
 
