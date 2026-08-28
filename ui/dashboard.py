@@ -127,9 +127,7 @@ def render_dashboard() -> pd.DataFrame | None:
     # Render dashboard KPI cards
     # --------------------------------------------------
 
-    st.subheader("📊 Dashboard KPIs")
-
-
+    
     render_dashboard_kpi_cards(
         kpi_result
     )
